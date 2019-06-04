@@ -1,16 +1,27 @@
-<div {% if parent_id %}id="category_sub_{{parent_id}}" class="collapse card" {% else %}class="card"{% endif %}>
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#category_sub_{{category.id}}" aria-expanded="true">
-          {{category}}
-        </button>
-      </h2>
+<div {% if parent_id %}class="collapse card category_sub_{{parent_id}}" {% else %}class="card" {% endif %}>
+    <div class="card-header" style="padding:0;">
+        <h2 class="mb-0">
+            {% if parent_id %}
+            <a class="btn btn-link" href="{% url 'post:post_list_with_category' category.slug %}">
+                {{category}}
+            </a>
+            {% else %}
+            <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target=".category_sub_{{category.id}}" aria-expanded="false">
+                {{category}}
+            </button>
+            {% endif %}
+        </h2>
     </div>
 </div>
+{% comment %}
+category = models.ForeignKey(Category, on_delete=models.SET_NULL,)
+category.category_set.all()
+{% endcomment%}
 {% if category.category_set %}
-    {% with category.id as parent_id %}
-    {% for category in category.category_set.all %}
-        {% include 'post/part_category_list.html' %}
-    {% endfor %}
-    {% endwith %}
+{% with category.id as parent_id %}
+{% for category in category.category_set.all %}
+{% include 'post/part_category_list.html' %}
+{% endfor %}
+{% endwith %}
 {% endif %}

@@ -20,6 +20,17 @@ class PostList(ListView):
         context_data['categories'] = Category.objects.filter(parent_category=None)
         return context_data
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if 'category_slug' in self.kwargs:
+            try:
+                category = Category.objects.get(slug=self.kwargs['category_slug'])
+                queryset = queryset.filter(category=category)
+            except:
+                pass
+
+        return queryset
+
 class PostDetail(DetailView):
     model = Post
     template_name = 'post/post_detail.html'

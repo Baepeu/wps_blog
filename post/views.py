@@ -1,3 +1,33 @@
 from django.shortcuts import render
 
 # Create your views here.
+def index(request):
+    return render(request, 'post/index.html')
+
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView,UpdateView,DeleteView
+from django.views.generic.detail import DetailView
+
+from .models import *
+
+class PostList(ListView):
+    model = Post
+    paginate_by = 1
+    template_name = 'post/post_list.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['categories'] = Category.objects.filter(parent_category=None)
+        return context_data
+
+class PostDetail(DetailView):
+    model = Post
+    template_name = 'post/post_detail.html'
+
+
+
+
+
+
+
+

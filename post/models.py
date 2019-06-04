@@ -5,7 +5,7 @@ from tagging.fields import TagField
 class Category(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=120, unique=True, allow_unicode=True, db_index=True)
-    parent_category = models.ForeignKey("self", on_delete=models.SET_NULL, blank=True, null=True)
+    parent_category = models.ForeignKey("self", on_delete=models.SET_NULL, blank=True, null=True, default=None)
 
 
     def __str__(self):

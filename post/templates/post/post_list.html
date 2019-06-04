@@ -5,19 +5,11 @@
 <div class="row mt-3">
     <div class="col col-md-2">
         <!-- category -->
-        <ul class="list-group">
+        <div class="accordion" id="accordionExample">
             {% for category in categories %}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{category}}
-                <span class="badge badge-primary badge-pill">{{category.post_set.count}}</span>
-                {% if category.category_set %}
-                    {% for sub_category in category.category_set.all%}
-                    {{sub_category}}
-                    {% endfor%}
-                {% endif %}
-            </li>
+                {% include 'post/part_category_list.html' %}
             {% endfor %}
-        </ul>
+        </div>
 
     </div>
     <div class="col-10 col-md-8">

@@ -1,0 +1,16 @@
+<div {% if parent_id %}id="category_sub_{{parent_id}}" class="collapse card" {% else %}class="card"{% endif %}>
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#category_sub_{{category.id}}" aria-expanded="true">
+          {{category}}
+        </button>
+      </h2>
+    </div>
+</div>
+{% if category.category_set %}
+    {% with category.id as parent_id %}
+    {% for category in category.category_set.all %}
+        {% include 'post/part_category_list.html' %}
+    {% endfor %}
+    {% endwith %}
+{% endif %}

@@ -12,7 +12,14 @@
     <div class="col-8">
         {{object.text|safe}}
 
-        Tags :
+        {% load tagging_tags %}
+        {% tags_for_object object as tags %}
+        {% if tags %}
+            Tags :
+            {% for tag in tags %}
+                 #{{tag.name}}
+            {% endfor %}
+        {% endif %}
     </div>
     <div class="col"></div>
 </div>

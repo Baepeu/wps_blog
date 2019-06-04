@@ -2,7 +2,7 @@
     <div class="card-header" style="padding:0;">
         <h2 class="mb-0">
             {% if parent_id %}
-            <a class="btn btn-link" href="{% url 'post:post_list_with_category' category.slug %}">
+            <a class="btn btn-link" href="{{category.get_absolute_url}}">
                 {{category}}
             </a>
             {% else %}

@@ -30,6 +30,18 @@ class PostDetail(DetailView):
     model = Post
     template_name = 'post/post_detail.html'
 
+class PostUpdate(UpdateView):
+    model = Post
+    template_name = 'post/post_update.html'
+    fields = ['title','text','tag']
+    # success_url => get_abslute_url
+
+from django.urls import reverse_lazy
+class PostDelete(DeleteView):
+    model = Post
+    template_name = 'post/post_delete.html'
+    success_url = reverse_lazy('post:post_list')
+
 
 
 

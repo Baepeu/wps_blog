@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{object.title|truncatechars:15}}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col"></div>
+    <div class="col-8">
+        {{object.text|safe}}
+    </div>
+    <div class="col"></div>
+</div>
+
+{% endblock %}

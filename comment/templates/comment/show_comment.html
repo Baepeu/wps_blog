@@ -1,8 +1,14 @@
 <form action="{% url 'add_comment' %}" method="post">
+    {% csrf_token %}
     {{form.as_p}}
     <input type="submit" class="btn btn-primary" value="Write">
 </form>
-
+<table class="table table-striped">
 {% for object in object_list %}
-    {{object.text}}-{{object.created}}<br>
+    <tr>
+        <td>{{object.text}}</td>
+        <td>{{object.author.username}}</td>
+        <td>{{object.created}}</td>
+    </tr>
 {% endfor %}
+    </table>

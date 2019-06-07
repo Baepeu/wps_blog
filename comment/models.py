@@ -13,3 +13,6 @@ class Comment(models.Model):
 
     text = models.CharField(max_length=400)
     created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created']

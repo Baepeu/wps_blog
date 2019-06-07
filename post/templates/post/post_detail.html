@@ -18,11 +18,15 @@
         {% if tags %}
             Tags :
             {% for tag in tags %}
-                 #{{tag.name}}
+                <a href="{% url 'post:post_taggedlist' tag.name %}">#{{tag.name}}</a>
             {% endfor %}
         {% endif %}
     </div>
     <div class="col"></div>
 </div>
+
+{% load comment%}
+{% show_comment content_type=object object_id=object.id %}
+
 
 {% endblock %}

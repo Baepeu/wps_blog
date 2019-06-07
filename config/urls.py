@@ -20,6 +20,7 @@ from django.urls import path, re_path, include
 from django.conf import settings
 
 urlpatterns = [
+    path('comment/', include('comment.urls')),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root':settings.MEDIA_ROOT}),

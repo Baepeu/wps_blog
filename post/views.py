@@ -26,9 +26,20 @@ class PostList(ListView):
 
         return queryset
 
+#from django.forms import modelform_factory
+#from comment.models import Comment
+from comment.forms import CommentForm
+from django.contrib.contenttypes.models import ContentType
+
 class PostDetail(DetailView):
     model = Post
     template_name = 'post/post_detail.html'
+    # 댓글 입력창
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        content_type = ContentType.objects.get_for_model(self.model)
+        context_data['form'] = CommentForm(initial={'content_type':content_type, 'object_id':self.object.id})
+        return context_data
 
 class PostUpdate(UpdateView):
     model = Post
@@ -61,6 +72,12 @@ class PostTaggedObjectList(TaggedObjectList):
     model = Post
     allow_empty = True
     template_name = 'post/post_list.html'
+
+
+from django.views.generic import TemplateView
+
+class TagList(TemplateView):
+    template_name = 'post/tag_list.html'
 
 
 

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Tag List{% endblock %}
+
+{% block content %}
+
+{% load tagging_tags%}
+
+{% tag_cloud_for_model post.Post as post_tags with steps=9 min_count=1 distribution=log %}
+    {% for tag in post_tags %}
+        <a href="{% url 'post:post_taggedlist' tag.name %}" style="font-size:{{tag.font_size}}em;">{{tag}}</a>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="alert alert-danger mt-5">
+    {{exception}}
+</div>
+
+{% load post %}
+{% print_post_list as post_list %}
+{% for post in post_list %}
+    <a href="{{post.get_absolute_url}}">{{post.title}}</a>
+{% endfor %}
+
+{% endblock %}

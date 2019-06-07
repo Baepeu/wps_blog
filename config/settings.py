@@ -25,7 +25,7 @@ SECRET_KEY = '*-u0wmbgbqel!9y8&f#=04397+2t-%+_bm*$lt2(53)%q((ihs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'post',
     'tagging',
+    'comment',
 ]
 
 MIDDLEWARE = [

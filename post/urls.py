@@ -5,6 +5,7 @@ app_name = 'post'
 
 urlpatterns = [
     path('tags/<tag>/', PostTaggedObjectList.as_view(), name='post_taggedlist'),
+    path('tags/', TagList.as_view(), name='tag_list'),
     path('create/', PostCreate.as_view(), name='post_create'),
     path('delete/<int:pk>/', PostDelete.as_view(), name='post_delete'),
     path('update/<int:pk>/', PostUpdate.as_view(), name='post_update'),

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Update - {{object.title|truncatechars:15}}
+{% endblock %}
+
+{% block content %}
+<div class="row mt-3">
+    <div class="col">
+        {% include 'post/category_list.html' %}
+    </div>
+    <div class="col-8">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.media}}
+            <table class="table table-striped">
+            {{form.as_table}}
+            </table>
+            <input type="submit" class="btn btn-primary" value="Update">
+        </form>
+    </div>
+    <div class="col"></div>
+</div>
+
+{% endblock %}

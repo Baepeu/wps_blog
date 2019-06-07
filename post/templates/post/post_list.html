@@ -30,8 +30,8 @@
                 <td>{{object.created}}</td>
                 <td>{{object.updated}}</td>
                 {% if user.is_authenticated %}
-                <th><a href="">update</a></th>
-                <th><a href="">delete</a></th>
+                <th><a href="{% url 'post:post_update' object.id %}">update</a></th>
+                <th><a href="{% url 'post:post_delete' object.id %}">delete</a></th>
                 {% endif %}
             </tr>
             {% endfor %}

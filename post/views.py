@@ -37,10 +37,31 @@ class PostUpdate(UpdateView):
     # success_url => get_abslute_url
 
 from django.urls import reverse_lazy
+
 class PostDelete(DeleteView):
     model = Post
     template_name = 'post/post_delete.html'
     success_url = reverse_lazy('post:post_list')
+
+from django.utils.text import slugify
+
+class PostCreate(CreateView):
+    model = Post
+    template_name = 'post/post_create.html'
+    fields = ['title', 'text', 'tag']
+
+    def form_valid(self, form):
+        # 작성자 매칭 - form.instance.author_id = self.request.user.id
+        form.instance.slug = slugify(form.instance.title, allow_unicode=True)
+        return super().form_valid(form)
+
+from tagging.views import TaggedObjectList
+
+class PostTaggedObjectList(TaggedObjectList):
+    model = Post
+    allow_empty = True
+    template_name = 'post/post_list.html'
+
 
 
 

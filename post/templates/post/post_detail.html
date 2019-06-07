@@ -13,6 +13,7 @@
         {{object.text|safe}}
 
         {% load tagging_tags %}
+
         {% tags_for_object object as tags %}
         {% if tags %}
             Tags :

@@ -10,8 +10,8 @@
         {% include 'post/category_list.html' %}
     </div>
     <div class="col-8">
+        <div class="alert alert-info">{{object.title}} - {{object.created}}</div>
         {{object.text|safe}}
-
         {% load tagging_tags %}
 
         {% tags_for_object object as tags %}

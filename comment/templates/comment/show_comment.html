@@ -6,7 +6,7 @@
 <table class="table table-striped">
 {% for object in object_list %}
     <tr>
-        <td>{{object.text}}</td>
+        <td>{{object.text}} {% if object.author == user %}<a href="{% url 'delete_comment' object.id %}">[삭제]</a>{% endif %}</td>
         <td>{{object.author.username}}</td>
         <td>{{object.created}}</td>
     </tr>

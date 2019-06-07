@@ -38,6 +38,20 @@
             </form>
         </div>
     </nav>
+
+
+    <div class="row">
+
+        <div class="col">
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}}">{{message}}</div>
+            {% endfor %}
+            {% endif%}
+        </div>
+
+    </div>
+
     {% block content %}
 
     {% endblock %}
